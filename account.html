@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Account - Clothing Shop</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="Navbar">
+    <div class="container">
+      <div href="index.html" class="Logo">Joash</div>
+      <div id="menu" class="menu">
+        <header class="inline">
+          <div class="Navbar"></div>
+        </header>
+        <a href="index.html" class="NavLink">Home</a>
+        <a href="index.html#tshirts" class="NavLink">T-Shirts</a>
+        <a href="index.html#hoodies" class="NavLink">Hoodies</a>
+        <div class="cart-container">
+          <a href="cart.html" class="NavLink cart-link">
+            <i class="ri-shopping-cart-line"></i>
+            <span class="cart-count">0</span>
+          </a>
+          <div class="cart-dropdown">
+            <h3>Your Cart</h3>
+            <div class="cart-list"></div>
+            <a href="cart.html" class="LinkButton Primary">Go to Cart</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container_menu">
+        <div class="mobile-menu1">
+          <div class="hamburger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar middle-bar"></div>
+            <div class="bar"></div>
+          </div>
+          <div id="index" class="dropdown-menu">
+            <div class="menu-item" data-href="index.html#tshirts">T-Shirts</div>
+            <div class="menu-item" data-href="index.html#hoodies">Hoodies</div>
+            <div class="menu-item" data-href="account.html">Account</div>
+          </div>
+        </div>
+
+        <div class="cart-container1">
+          <a class="NavLink cart-link1">
+            <i class="ri-shopping-cart-line"></i>
+            <span class="cart-count">0</span>
+          </a>
+          <div class="cart-dropdown">
+            <h3>Your Cart</h3>
+            <div class="cart-list"></div>
+            <a href="cart.html" class="LinkButton Primary">Go to Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div style="display: flex;flex-direction: column;flex-wrap: nowrap;align-content: center;justify-content: center;align-items: center;">
+    <div id="notification" class="notification"></div>
+  </div>
+  <main>
+    <section id="account" class="hidden">
+      <div class="container" id="acc">
+        <div class="tabs">
+          <button class="tablinks" onclick="openTab(event, 'Orders')">My Orders</button>
+          <button class="tablinks" onclick="openTab(event, 'Details')">Account Details</button>
+          <button class="tablinks" onclick="logout()">Logout</button>
+        </div>
+
+        <div id="Orders" class="tabcontent">
+          <h3 id="acc">My Orders</h3>
+          <div class="orders-container" id="orders-list"></div>
+        </div>
+
+        <div id="Details" class="tabcontent" style="display: none;">
+          <h3 id="acc">Account Details</h3>
+          <div class="tabcontent1">
+            <p id="acc">Name: <span id="user-name"></span></p>
+            <p id="acc">Email: <span id="user-email"></span></p>
+            <p id="acc">Phone: <span id="user-phone"></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      setupCart();
+      const loggedIn = localStorage.getItem('loggedIn') === 'true';
+      if (loggedIn) {
+        setupAccountPage();
+      } else {
+        window.location.href = 'login.html';
+      }
+    
+    
+      
+      updateCartCount();
+      setActiveMenuItem();
+
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('signup_error')) {
+        const error = params.get('signup_error');
+        let message = 'Signup failed. Please try again.';
+        switch (error) {
+          case 'invalid_email':
+            message = 'Invalid email format. Please try again.';
+            break;
+          case 'email_exists':
+            message = 'This email is already registered. Please use a different email.';
+            break;
+          case 'database_error':
+            message = 'An error occurred while creating your account. Please try again.';
+            break;
+          case 'invalid_request':
+            message = 'Invalid request. Please try again.';
+            break;
+          default:
+            message = 'Signup failed. Please try again.';
+        }
+        showNotification(message);
+      }
+      if (params.has('signup_success')) {
+        showNotification('Account created successfully. You can now log in.');
+      }
+    });
+
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    function logout() {
+      localStorage.removeItem('loggedIn');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('userPhone');
+      
+      fetch('logout.php')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            window.location.href = 'index.html';
+          } else {
+            console.error('Logout failed:', data);
+            showNotification('Logout failed. Please try again.');
+          }
+        })
+        .catch(error => console.error('Error during logout:', error));
+    }
+
+    function loadAccountDetails() {
+      const userName = localStorage.getItem('userName');
+      const userEmail = localStorage.getItem('userEmail');
+      const userPhone = localStorage.getItem('userPhone');
+      if (userName && userEmail && userPhone) {
+        document.getElementById('user-name').innerText = userName;
+        document.getElementById('user-email').innerText = userEmail;
+        document.getElementById('user-phone').innerText = userPhone;
+      } else {
+        fetch('user_details.php')
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              document.getElementById('user-name').innerText = data.user.name;
+              document.getElementById('user-email').innerText = data.user.email;
+              document.getElementById('user-phone').innerText = data.user.phone;
+              localStorage.setItem('userName', data.user.name);
+              localStorage.setItem('userEmail', data.user.email);
+              localStorage.setItem('userPhone', data.user.phone);
+            } else {
+              console.error('Failed to load user details:', data);
+            }
+          })
+          .catch(error => console.error('Error fetching user details:', error));
+      }
+    }
+
+    function loadOrders() {
+      fetch('user_orders.php')
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            const ordersList = document.getElementById('orders-list');
+            ordersList.innerHTML = '';
+            data.orders.forEach(order => {
+              const orderItem = document.createElement('div');
+              orderItem.className = 'order-item';
+              orderItem.innerHTML = `
+                <h4>Order #${order.id}</h4>
+                <p>Date: ${order.order_date}</p>
+                <p>Total Price: $${order.total_price}</p>
+                <p>Shipping Address: ${order.shipping_address}, ${order.shipping_city}, ${order.shipping_zip}</p>
+                <p>Shipping Method: ${order.shipping_method}</p>
+                <h5>Items:</h5>
+                <ul>
+                  ${order.items.map(item => `
+                    <li>${item.name} - ${item.quantity} x $${item.price}</li>
+                  `).join('')}
+                </ul>
+              `;
+              ordersList.appendChild(orderItem);
+            });
+          } else {
+            console.error('Failed to load orders:', data);
+          }
+        })
+        .catch(error => console.error('Error fetching orders:', error));
+    }
+  
+
+    function showNotification(message) {
+      const notification = document.getElementById("notification");
+      if (notification) {
+        notification.textContent = message;
+        notification.classList.add("show");
+        setTimeout(() => {
+          notification.classList.remove("show");
+        }, 3000);
+      }
+    }
+
+    function setupMenu(isMobile, hamburgerMenu, dropdownMenu, menuItems) {
+      if (isMobile) {
+        hamburgerMenu.style.display = 'block';
+        dropdownMenu.style.display = 'none';
+        menuItems.forEach(item => item.addEventListener('click', handleMenuItemClick));
+      } else {
+        hamburgerMenu.style.display = 'none';
+        dropdownMenu.style.display = 'none';
+        menuItems.forEach(item => item.style.display = 'block');
+      }
+    }
+
+    function handleMenuItemClick(event) {
+      const href = event.target.getAttribute('data-href');
+      window.location.href = href;
+    }
+
+    function toggleMenu() {
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+      const menuItems = document.querySelectorAll('.menu-item');
+
+      if (hamburgerMenu && dropdownMenu && menuItems.length > 0) {
+        const isActive = dropdownMenu.classList.toggle('active');
+        hamburgerMenu.classList.toggle('active');
+        menuItems.forEach((item, index) => {
+          item.style.animation = isActive ? `menuItemFadeIn 0.5s forwards ${index * 0.2}s` : '';
+        });
+      }
+    }
+
+    function navigateToSection(href) {
+      const menuItems = document.querySelectorAll('.menu-item');
+      menuItems.forEach(item => item.classList.remove('active'));
+      const activeItem = document.querySelector(`.menu-item[data-href="${href}"]`);
+      if (activeItem) {
+        activeItem.classList.add('active');
+      }
+      window.location.href = href;
+
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      if (dropdownMenu && hamburgerMenu) {
+        dropdownMenu.classList.remove('active');
+        hamburgerMenu.classList.remove('active');
+      }
+    }
+
+    function setActiveMenuItem() {
+      const currentPath = window.location.hash || window.location.pathname;
+      const menuItems = document.querySelectorAll('.menu-item');
+      menuItems.forEach(item => {
+        const href = item.getAttribute('data-href');
+        if (href === currentPath || (href === "#home" && currentPath === "/")) {
+          item.classList.add('active');
+        }
+      });
+    }
+
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+    const openTabName = localStorage.getItem('openTab');
+    if (openTabName) {
+      openTab(event, openTabName);
+      localStorage.removeItem('openTab'); // Clear the storage after using it
+    }
+  });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const logo = document.querySelector(".Logo");
+
+    if (logo) {
+        logo.addEventListener("click", () => {
+            window.location.href = "index.html#home";
+        });
+    }
+});
+
+  </script>
+
+  <script src="menu.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+</body>
+</html>

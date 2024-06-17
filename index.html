@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Language" content="en">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="description" content="Welcome to Joash – not your typical clothing shop. We embody the fire, bringing passion, purpose, and inspiration to every piece we offer.">
+  <title>Joash</title>
+<link rel="icon" type="image/x-icon" href="resources/favicon.ico" />
+  <link href="styles.css" rel="stylesheet"/>
+ <link rel="preload" href="resources/tshirt4.jpg" as="image">
+ <link rel="preload" href="resources/hoodie1.jpg" as="image">
+
+</head>
+<body>
+  <nav class="Navbar">
+    <div class="container">
+      <div href="index.html" class="Logo">Joash</div>
+      <div id="menu" class="menu">
+
+        <header class="inline">
+          <div  class="Navbar"></div>
+        </header>
+        
+        <a href="#tshirts" class="NavLink">T-Shirts</a>
+        <a href="#hoodies" class="NavLink">Hoodies</a>
+	<div class="account-dropdown">
+          <button  class="account-button"><i class="ri-user-line"></i></button>
+          <div class="account-menu" id="accountMenu">
+            <a href="account.html" onclick="navigateAndOpenTab(event, 'Details')" class="dropdown-link"><i class="ri-user-line"></i> My Account</a>
+		 <a href="account.html" onclick="navigateAndOpenTab(event, 'Orders')" class="dropdown-link">
+              <i class="ri-shopping-bag-line"></i> My Orders
+            </a>
+        </div>
+      </div>
+        <div class="cart-container">
+          <a href="cart.html" class="NavLink cart-link">
+            <i class="ri-shopping-cart-line"></i>
+            <span class="cart-count">0</span>
+          </a>
+          <div class="cart-dropdown">
+            <h3>Your Cart</h3>
+            <div class="cart-list"></div>
+            <a href="cart.html" class="LinkButton Primary">Go to Cart</a>
+          </div>
+
+              <div class="cart-list">
+                <!-- Cart items will be dynamically loaded here -->
+              </div>
+        </div>
+
+        
+      </div>
+
+
+
+    <div class="container_menu">
+      <div class="mobile-menu1">
+        <div class="hamburger-menu" onclick="toggleMenu()">
+          <div class="bar"></div>
+          <div class="bar middle-bar"></div>
+          <div class="bar"></div>
+        </div>
+        <div id="index" class="dropdown-menu">
+          
+          <div class="menu-item" data-href="#tshirts">T-Shirts</div>
+          <div class="menu-item" data-href="#hoodies">Hoodies</div>
+          <div class="menu-item" data-href="account.html">Account</div>
+        </div>
+    </div>
+
+    <div class="cart-container1">
+      <a  class="NavLink cart-link1">
+        <i class="ri-shopping-cart-line"></i>
+        <span class="cart-count">0</span>
+      </a>
+      <div class="cart-dropdown">
+        <h3>Your Cart</h3>
+        <div class="cart-list"></div>
+        <a href="cart.html" class="LinkButton Primary">Go to Cart</a>
+      </div>
+
+          <div class="cart-list">
+            <!-- Cart items will be dynamically loaded here -->
+          </div>
+    </div>
+
+    </div>
+
+    </div>
+    <!-- New mobile menu for smaller screens -->
+    
+
+
+
+                                 
+  </nav>
+
+  <main>
+    <section id="home" class="parallax current-section">
+     <video autoplay muted loop playsinline preload="auto" poster="resources/bg_video1.png">
+        <source src="resources/bg_video3.mp4" type="video/mp4">
+	<img src="resources/bg_video1.png" alt="Fallback image if video is not supported">
+      </video>
+      <div class="hero">
+        <div class="content">
+          <h1>Welcome</h1>
+          <a href="#product" class="LinkButton Primary">Shop Now</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="product">
+      <section id="prod">
+        <div class="container1">
+          <div class="image-container1" data-href="#tshirts">
+            <img class="sepia-image1" src="resources/tshirt4.jpg" alt="T-Shirts" >
+            <div class="category-links1">T-Shirts</div>
+          </div>
+          <div class="image-container2" data-href="#hoodies">
+            <img class="sepia-image2" src="resources/hoodie1.jpg" alt="Hoodies" >
+            <div class="category-links1">Hoodies</div>
+          </div>
+        </div>
+      </section>
+      <div class="overlay">
+        <h2 id="overlay">Our Products</h2>
+      </div>
+    </section>
+    
+    
+
+    
+
+    <section id="tshirts">
+      
+      <div class="container">
+        <h2>T-Shirts</h2>
+        <div class="product-list">
+        </div>
+      </div>
+    </section>  
+
+
+    <section id="hoodies">
+      <div class="container">
+        <h2>Hoodies</h2>
+        <div class="product-list">
+          <!-- Hoodies products will be dynamically loaded here -->
+        </div>
+      </div>
+    </section>
+
+    
+    
+
+  </main>
+  <script src="main.js"></script>
+<link async href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet"/>
+<link async crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<script src="menu.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      setupCart();
+      loadTshirts();
+      loadHoodies();
+      updateCartCount();
+      setActiveMenuItem();
+    });
+  </script>
+
+
+
+
+
+<script crossorigin="anonymous" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+          document.body.classList.add('touchscreen');
+      }
+  });
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const navbar = document.querySelector('.Navbar');
+  const productSection = document.getElementById('home');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navbar.style.opacity = '1'; // Hide the navbar
+      } else {
+        navbar.style.opacity = '0'; // Show the navbar
+      }
+    });
+  }, {
+    threshold: 0.5 // Adjust this value as needed
+  });
+
+  observer.observe(productSection);
+});
+  </script>
+
+
+</body>
+</html>

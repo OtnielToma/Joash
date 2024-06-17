@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://joash.store/</loc>
+	<lastmod>2024-06-16T00:11:35+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://joash.store/account.html</loc>
+	<lastmod>2024-06-16T00:11:35+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://joash.store/cart.html</loc>
+	<lastmod>2024-06-16T00:11:35+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://joash.store/index.html</loc>
+	<lastmod>2024-06-16T00:11:36+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://joash.store/login.html</loc>
+	<lastmod>2024-06-16T00:11:38+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://joash.store/signup.html</loc>
+	<lastmod>2024-06-16T00:11:39+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+</urlset>

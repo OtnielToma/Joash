@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - Clothing Shop</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Main content styles */
+    #product-details .container {
+      height: calc(100dvh - 100px);
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      align-items: center;
+    }
+    .product-gallery {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+    #main-image {
+      width: 30dvw;
+      height: auto;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+    .thumbnail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .thumbnail {
+      width: 100px;
+      height: calc(var(--width) / 2);
+      border: 1px solid #ccc;
+      cursor: pointer;
+      margin: 10%;
+      transform: translateX(-50px);
+      border-radius: 10px;
+    }
+    .thumbnail:hover {
+      border-color: #000;
+    }
+    .product-info {
+      max-width: 400px;
+      max-height: 50dvh;
+
+    }
+
+@media (orientation: landscape){
+	.product-info {
+	margin-left: 10dvw;
+	}
+}
+
+    .product-info h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .product-info p {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .product-info select {
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    .product-info button {
+      background-color: #ff4500;
+      color: #fff;
+      padding: 15px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 10px;
+    }
+    .product-info button:active {
+      background-color: #333;
+    }
+    /* Responsive design */
+
+@media (max-height: 760px) {
+	.product-info{
+	scale: 0.8;
+        margin-top: -10px;
+	}
+}
+
+@media (max-height: 675px) and (orientation: portrait){
+        .product-info{
+	
+	scale: 0.7;
+        margin-top: -40px;
+	
+        }
+}
+
+
+    @media only screen and (max-aspect-ratio: 1/1) and (orientation: portrait) {
+    #product-details .container {
+      gap: 0px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    align-items: center;
+    height: 80dvh;
+  }
+
+  .product-gallery {
+    box-sizing: inherit;
+    display: flex;
+        flex-direction: column;
+        height: 50%;
+        width: auto;
+        margin: 0%;
+        
+}
+
+
+.thumbnail-list {
+    opacity: 0;
+    height: 0px;
+    width: 0px;
+}
+  .product-info {
+    box-sizing: inherit;
+        width: 100%;
+        padding: 0%;
+        height: auto;
+        overflow: visible;
+        transform: scale(1);
+  }
+  #main-image {
+    width: auto;
+    height: 100%;
+    margin-bottom: 0;
+  }
+
+}
+@media (min-width: 2000px) {
+  #product-details .container {
+      justify-content: space-between;
+      gap: 5dvw;
+    }
+
+    .product-info {
+    width: 30dvw;
+   
+}
+
+#main-image {
+    width: 80%;}
+
+.thumbnail {
+
+  height: 150px;
+  width: 400PX;
+}
+
+.thumbnail-list {
+max-width: 20%;
+
+
+}
+
+.product-gallery {
+
+  width: 30dvw;
+}
+
+
+}
+
+
+@media (max-width: 1200px) and (min-width: 1034px) {
+  #product-details .container {
+      justify-content: space-around;
+      
+    }
+    .product-info {
+    scale: 1.3;
+margin-top: 10px;
+}
+
+  }
+
+@media (max-width: 1200px) and (min-width: 1034px) and (orientation: landscape){
+    .product-info{  
+ scale: 1;
+margin-left: 10dvw;}
+}
+
+	@media (max-width: 767px) and (min-width: 630px) and (orientation: landscape){
+	
+
+        #product-details .container{
+	max-width: 80dvw;
+	}
+	
+	#main-image {
+   	 width: 420px;
+	margin-right: -40px;
+	}
+
+	.thumbnail-list{
+	display: none;
+	}
+
+	}
+
+  </style>
+</head>
+<body>
+  <nav class="Navbar">
+    <div class="container">
+      <div class="Logo">Joash</div>
+      <div id="menu" class="menu">
+        <header class="inline">
+          <div class="Navbar"></div>
+        </header>
+        <a href="index.html#home" class="NavLink">Home </a>
+        <a href="index.html#tshirts" class="NavLink">T-Shirts</a>
+        <a href="index.html#hoodies" class="NavLink">Hoodies</a>
+        <div class="account-dropdown">
+          <button  class="account-button"><i class="ri-user-line"></i></button>
+          <div class="account-menu" id="accountMenu">
+            <a href="account.html" onclick="navigateAndOpenTab(event, 'Details')" class="dropdown-link"><i class="ri-user-line"></i> My Account</a>
+		 <a href="account.html" onclick="navigateAndOpenTab(event, 'Orders')" class="dropdown-link">
+              <i class="ri-shopping-bag-line"></i> My Orders
+            </a>
+        </div>
+      </div>
+        <div class="cart-container">
+          <a href="cart.html" class="NavLink cart-link">
+            <i class="ri-shopping-cart-line"></i>
+            <span class="cart-count">0</span>
+          </a>
+          <div class="cart-dropdown">
+            <h3>Your Cart</h3>
+            <div class="cart-list"></div>
+            <a href="cart.html" class="LinkButton Primary">Go to Cart</a>
+          </div>
+        </div>
+      </div>
+      <div class="container_menu">
+        <div class="mobile-menu1">
+          <div class="hamburger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar middle-bar"></div>
+            <div class="bar"></div>
+          </div>
+          <div id="index" class="dropdown-menu">
+            <div class="menu-item" data-href="index.html#tshirts">T-Shirts</div>
+          <div class="menu-item" data-href="index.html#hoodies">Hoodies</div>
+          <div class="menu-item" data-href="account.html">Account</div>
+          </div>
+        </div>
+        <div class="cart-container1">
+          <a class="NavLink cart-link1">
+            <i class="ri-shopping-cart-line"></i>
+            <span class="cart-count">0</span>
+          </a>
+          <div class="cart-dropdown">
+            <h3>Your Cart</h3>
+            <div class="cart-list"></div>
+            <a href="cart.html" class="LinkButton Primary">Go to Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div id="notification" class="notification"></div>
+  <main>
+    <section id="product-details">
+      <div class="container">
+        <div class="product-gallery">
+          <img id="main-image" src="" alt="Product Image">
+          <div class="thumbnail-list">
+            <!-- Thumbnails will be dynamically loaded here -->
+          </div>
+        </div>
+        <div class="product-info">
+          <input type="hidden" id="product-id">
+          <h2 id="product-name"></h2>
+          <p id="product-description"></p>
+          <p id="product-price"></p>
+          <input type="hidden" id="product-category">
+          <label for="product-size">Select Size:</label>
+          <select id="product-size">
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+          <button id="add-to-cart" onclick="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      setupCart();
+      loadTshirts();
+      loadHoodies();
+      updateCartCount();
+      setActiveMenuItem();
+    });
+  </script>
+  <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('id');
+      if (productId) {
+        loadProductDetails(productId);
+      }
+    });
+
+    function loadProductDetails(id) {
+      const products = [
+        { id: 1, name: 'Green Tshirt', price: 59.99, category: 'tshirt', image: 'resources/green.webp', description: 'Description of Green Tshirt', images: ['resources/green.webp', 'resources/green.webp', 'resources/green.webp'] },
+        { id: 2, name: 'Yellow Tshirt', price: 59.99, category: 'tshirt', image: 'resources/yellow.webp', description: 'Description of Fruit of Yellow T-Shirt', images: ['resources/yellow.webp', 'resources/yellow.webp', 'resources/yellow.webp'] },
+        { id: 3, name: 'Blue Tshirt', price: 59.99, category: 'tshirt', image: 'resources/blue.webp', description: 'Description of Blue T-Shirt', images: ['resources/blue.webp', 'resources/blue.webp', 'resources/blue.webp'] },
+        { id: 4, name: 'Pink Tshirt', price: 59.99, category: 'tshirt', image: 'resources/pink.webp', description: 'Description of Pink T-Shirt', images: ['resources/pink.webp', 'resources/pink.webp', 'resources/pink.webp'] },
+        { id: 5, name: 'Pink Hoodie', price: 99.99, category: 'hoodie', image: 'resources/Phoodie.webp' ,  description: 'Description of pink hoodie', images: ['resources/Phoodie.webp', 'resources/Phoodie.webp', 'resources/Phoodie.webp']},
+        { id: 6, name: 'White Hoodie', price: 99.99, category: 'hoodie', image: 'resources/Whoodie.webp',  description: 'Description of White Hoodie', images: ['resources/Whoodie.webp', 'resources/Whoodie.webp', 'resources/Whoodie.webp'] },
+        { id: 7, name: 'Green Hoodie', price: 99.99, category: 'hoodie', image: 'resources/Ghoodie.webp',  description: 'Description of Green Hoodie', images: ['resources/Ghoodie.webp', 'resources/Ghoodie.webp', 'resources/Ghoodie.webp'] },
+        { id: 8, name: 'Yellow Hoodie', price: 99.99, category: 'hoodie', image: 'resources/Yhoodie.webp',  description: 'Description of Fruit of the Spirit Box T-Shirt', images: ['resources/Yhoodie.webp', 'resources/Yhoodie.webp', 'resources/Yhoodie.webp'] },
+      ];
+
+      const product = products.find(p => p.id == id);
+      if (product) {
+        document.getElementById('product-id').value = product.id;  // Set the actual product ID
+        document.getElementById('main-image').src = product.image;
+        document.getElementById('product-name').textContent = product.name;
+        document.getElementById('product-description').textContent = product.description;
+        document.getElementById('product-price').textContent = `${product.price.toFixed(2)} Lei`;
+        document.getElementById('product-category').value = product.category; // Set the product category
+
+        const thumbnails = product.images;
+        const thumbnailList = document.querySelector('.thumbnail-list');
+        thumbnailList.innerHTML = '';
+        thumbnails.forEach(src => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.classList.add('thumbnail');
+          img.addEventListener('click', () => {
+            document.getElementById('main-image').src = src;
+          });
+          thumbnailList.appendChild(img);
+        });
+      }
+    }
+
+
+    function adjustScale() {
+            const productInfo = document.querySelector('.product-info');
+            if (window.matchMedia('(max-aspect-ratio: 1 / 1), (orientation: portrait)').matches) {
+              productInfo.style.transform = 'scale(1)';
+            } else {
+                
+
+                const height = productInfo.offsetHeight;
+                const scaleFactor = 1 * (height/3 / 100);
+                productInfo.style.transform = `scale(${scaleFactor})`;
+            }
+        }
+
+        window.addEventListener('resize', adjustScale);
+        window.addEventListener('load', adjustScale);
+  
+
+
+  </script>
+  <script src="menu.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
+</body>
+</html>

@@ -1,0 +1,205 @@
+Arguments: ["sebi.gabor20@yahoo.com","173","<tr>\n                                    <td>Pink Tshirt</td>\n                                    <td>L</td>\n                                    <td>1</td>\n                                    <td>59.99 Lei</td>\n                                    <td>59.99 Lei</td>\n                                 </tr>","59.99","Sebi Gabor","str. Pelicani, nr. 7","Timisoara","300328","standard"]
+Admin email sent: 250 2.0.0 OK  1718580633 ffacd0b85a97d-36075104b8bsm10614408f8f.105 - gsmtp
+Customer email sent: 250 2.0.0 OK  1718580633 5b1f17b1804b1-422f6320bfdsm142452955e9.37 - gsmtp
+Output: [2024-06-16 23:30:31] DEBUG Creating transport: nodemailer (6.9.13; +https://nodemailer.com/; SMTP/6.9.13[client:6.9.13])
+[2024-06-16 23:30:31] DEBUG Sending mail using SMTP/6.9.13[client:6.9.13]
+[2024-06-16 23:30:31] DEBUG Sending mail using SMTP/6.9.13[client:6.9.13]
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] Resolved smtp.gmail.com as 74.125.193.108 [cache miss]
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] Resolved smtp.gmail.com as 74.125.193.108 [cache miss]
+[2024-06-16 23:30:31] INFO  [COt3lf31aMs] Secure connection established to 74.125.193.108:465
+[2024-06-16 23:30:31] INFO  [803Qt1uRE6I] Secure connection established to 74.125.193.108:465
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] S: 220 smtp.gmail.com ESMTP 5b1f17b1804b1-422f6320bfdsm142452955e9.37 - gsmtp
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] C: EHLO ip-172-31-31-90.eu-west-1.compute.internal
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] S: 250-smtp.gmail.com at your service, [3.250.112.75]
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] S: 250-SIZE 35882577
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] S: 250-8BITMIME
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] S: 250-ENHANCEDSTATUSCODES
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] S: 250-PIPELINING
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] S: 250-CHUNKING
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] S: 250 SMTPUTF8
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] SMTP handshake finished
+[2024-06-16 23:30:31] DEBUG [COt3lf31aMs] C: AUTH PLAIN AGpvYXNoLmNsb3RoZXNAZ21haWwuY29tAC8qIHNlY3JldCAqLw==
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] S: 220 smtp.gmail.com ESMTP ffacd0b85a97d-36075104b8bsm10614408f8f.105 - gsmtp
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] C: EHLO ip-172-31-31-90.eu-west-1.compute.internal
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] S: 250-smtp.gmail.com at your service, [3.250.112.75]
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] S: 250-SIZE 35882577
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] S: 250-8BITMIME
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] S: 250-ENHANCEDSTATUSCODES
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] S: 250-PIPELINING
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] S: 250-CHUNKING
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] S: 250 SMTPUTF8
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] SMTP handshake finished
+[2024-06-16 23:30:31] DEBUG [803Qt1uRE6I] C: AUTH PLAIN AGpvYXNoLmNsb3RoZXNAZ21haWwuY29tAC8qIHNlY3JldCAqLw==
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] S: 235 2.7.0 Accepted
+[2024-06-16 23:30:32] INFO  [COt3lf31aMs] User "joash.clothes@gmail.com" authenticated
+[2024-06-16 23:30:32] INFO  Sending message <d222e136-37bf-9739-aa1e-8b19e95e0340@gmail.com> to <sebi.gabor20@yahoo.com>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] C: MAIL FROM:<joash.clothes@gmail.com>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] S: 250 2.1.0 OK 5b1f17b1804b1-422f6320bfdsm142452955e9.37 - gsmtp
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] C: RCPT TO:<sebi.gabor20@yahoo.com>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] S: 250 2.1.5 OK 5b1f17b1804b1-422f6320bfdsm142452955e9.37 - gsmtp
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] C: DATA
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] S: 235 2.7.0 Accepted
+[2024-06-16 23:30:32] INFO  [803Qt1uRE6I] User "joash.clothes@gmail.com" authenticated
+[2024-06-16 23:30:32] INFO  Sending message <c0bedaa0-fba7-8b39-ae69-828cd34c8b4b@gmail.com> to <joash.clothes@gmail.com>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] C: MAIL FROM:<joash.clothes@gmail.com>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] S: 250 2.1.0 OK ffacd0b85a97d-36075104b8bsm10614408f8f.105 - gsmtp
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] C: RCPT TO:<joash.clothes@gmail.com>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] S: 250 2.1.5 OK ffacd0b85a97d-36075104b8bsm10614408f8f.105 - gsmtp
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] C: DATA
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] S: 354  Go ahead ffacd0b85a97d-36075104b8bsm10614408f8f.105 - gsmtp
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] From: joash.clothes@gmail.com
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] To: joash.clothes@gmail.com
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] Subject: New Order Received - Order #173
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] Message-ID: <c0bedaa0-fba7-8b39-ae69-828cd34c8b4b@gmail.com>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] Content-Transfer-Encoding: quoted-printable
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] Date: Sun, 16 Jun 2024 23:30:31 +0000
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] MIME-Version: 1.0
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] Content-Type: text/html; charset=utf-8
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]     <html>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]     <head>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       <style>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         table {
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]           width: 100%;
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]           border-collapse: collapse;
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         }
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         th, td {
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]           border: 1px solid #ddd;
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]           padding: 8px;
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]           text-align: left;
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         }
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         th {
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]           =
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] background-color: #f2f2f2;
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         }
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       </style>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]     </head>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]     <body>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       <h1>New Order Received</h1>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       <p>Order ID: 173</p>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       <p>Customer Name: Sebi Gabor</p>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       <p>Customer Email: sebi.=
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] gabor20@yahoo.com</p>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       <p>Shipping Information:</p>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       <p>Address: str. Pelicani, nr. 7</p>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       <p>City: Timisoara</p>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       <p>ZIP: 300328</p>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       <p>Shipping Method: standard</p>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       <table>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         <thead>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]           <tr>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]             <th>Product</th>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]             <th>Size</th>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]             <th>Quantity</th>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]             <th>Price</th>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]             <th>Total</th>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]           </tr>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         </thead>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         <tbody>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]           <tr>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]                            =
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]          <td>Pink Tshirt</td>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]                                     =
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] <td>L</td>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]                                     <td>1</td>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]                                     <td>59.99 Lei</td>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]                                     <td>59.99 Lei</td>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]                                  </tr>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         </tbody>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         <tfoot>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]           <tr>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]             <td colspan=3D"4" style=3D"text-align:right;"><s=
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] trong>Grand Total</strong></td>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]             <td><strong>59.99 =
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] Lei</strong></td>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]           </tr>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]         </tfoot>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]       </table>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]     </body>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I]     </html>
+[2024-06-16 23:30:32] DEBUG [803Qt1uRE6I] .
+[2024-06-16 23:30:32] INFO  [803Qt1uRE6I] <1851 bytes encoded mime message (source size 1793 bytes)>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] S: 354  Go ahead 5b1f17b1804b1-422f6320bfdsm142452955e9.37 - gsmtp
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] From: joash.clothes@gmail.com
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] To: sebi.gabor20@yahoo.com
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] Subject: Order Confirmation - Order #173
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] Message-ID: <d222e136-37bf-9739-aa1e-8b19e95e0340@gmail.com>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] Content-Transfer-Encoding: quoted-printable
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] Date: Sun, 16 Jun 2024 23:30:31 +0000
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] MIME-Version: 1.0
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] Content-Type: text/html; charset=utf-8
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]     <html>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]     <head>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       <style>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         table {
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]           width: 100%;
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]           border-collapse: collapse;
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         }
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         th, td {
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]           border: 1px solid #ddd;
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]           padding: 8px;
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]           text-align: left;
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         }
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         th {
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]           =
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] background-color: #f2f2f2;
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         }
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       </style>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]     </head>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]     <body>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       <h1>Thank you for your order!</h1>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       <p>Order ID: 173</p>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       <p>Shipping Information:</p>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       <p>Name: Sebi Gabor</p>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       <p>Address: str. Pelicani, nr. 7</p>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       <p>City: Timisoara</p>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       <p>ZIP: 300328</p>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       <p>Shipping Method: standard</p>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       <table>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         <thead>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]           <tr>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]             <th>Product</th>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]             <th>Size</th>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]             <th>Quantity</th>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]             <th>Price</th>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]             <th>Total</th>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]           </tr>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         </thead>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         <tbody>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]           <tr>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]                            =
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]          <td>Pink Tshirt</td>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]                                     =
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] <td>L</td>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]                                     <td>1</td>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]                                     <td>59.99 Lei</td>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]                                     <td>59.99 Lei</td>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]                                  </tr>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         </tbody>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         <tfoot>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]           <tr>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]             <td colspan=3D"4" style=3D"text-align:right;"><s=
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] trong>Grand Total</strong></td>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]             <td><strong>59.99 =
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] Lei</strong></td>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]           </tr>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]         </tfoot>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]       </table>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]     </body>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs]     </html>
+[2024-06-16 23:30:32] DEBUG [COt3lf31aMs] .
+[2024-06-16 23:30:32] INFO  [COt3lf31aMs] <1792 bytes encoded mime message (source size 1735 bytes)>
+[2024-06-16 23:30:33] DEBUG [803Qt1uRE6I] S: 250 2.0.0 OK  1718580633 ffacd0b85a97d-36075104b8bsm10614408f8f.105 - gsmtp
+[2024-06-16 23:30:33] DEBUG [803Qt1uRE6I] Closing connection to the server using "end"
+Admin email sent: 250 2.0.0 OK  1718580633 ffacd0b85a97d-36075104b8bsm10614408f8f.105 - gsmtp
+[2024-06-16 23:30:33] INFO  [803Qt1uRE6I] Connection closed
+[2024-06-16 23:30:33] DEBUG [COt3lf31aMs] S: 250 2.0.0 OK  1718580633 5b1f17b1804b1-422f6320bfdsm142452955e9.37 - gsmtp
+[2024-06-16 23:30:33] DEBUG [COt3lf31aMs] Closing connection to the server using "end"
+Customer email sent: 250 2.0.0 OK  1718580633 5b1f17b1804b1-422f6320bfdsm142452955e9.37 - gsmtp
+[2024-06-16 23:30:33] INFO  [COt3lf31aMs] Connection closed
+Return var: 0
