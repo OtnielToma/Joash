@@ -560,45 +560,6 @@ function injectCSS() {
 
 
 
-function setupLoginForm() {
-  const container = document.getElementById('loginForm');
-  if (container) {
-    container.addEventListener('submit', function(event) {
-      event.preventDefault();
-      const formData = new FormData(container);
-
-      fetch('login.php', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => {
-        console.log('Response received:', response);
-        return response.json();
-      })
-      .then(data => {
-        console.log('Response data:', data);
-        if (data.success) {
-          showNotification('Login successful. Redirecting to account...');
-          localStorage.setItem('loggedIn', 'true');
-          localStorage.setItem('userName', data.userName);
-          setTimeout(() => {
-            window.location.href = 'account.html';
-          }, 3000); // Adjust the delay as needed
-        } else {
-          showNotification('Login failed: ' + data.message);
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        showNotification('Login failed. Please try again.');
-      });
-    });
-  }
-}
-
-
-
-
 
 
 function setupAccountPage() {
@@ -681,10 +642,10 @@ function setupSignupForm() {
       .then(response => response.json())
       .then(data => {
         if (data.success) {
-          showNotification('Signup successful. Redirecting to account...');
-          setTimeout(() => {
-            window.location.href = 'account.html';
-          }, 3000); // Adjust the delay as needed
+          showNotification('Signup successful. Please check your email for the verification code.');
+          document.getElementById('signup').style.display = 'none';
+          document.getElementById('verificationSection').style.display = 'block';
+          document.getElementById('verificationForm').dataset.email = formData.get('email');
         } else {
           showNotification('Signup failed: ' + data.message);
         }
@@ -695,7 +656,37 @@ function setupSignupForm() {
       });
     });
   }
+
+  const verificationForm = document.getElementById('verificationForm');
+  if (verificationForm) {
+    verificationForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(verificationForm);
+      formData.append('email', verificationForm.dataset.email);
+
+      fetch('verify.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          showNotification('Verification successful. Redirecting to login...');
+          setTimeout(() => {
+            window.location.href = 'login.html';
+          }, 3000); // Adjust the delay as needed
+        } else {
+          showNotification('Verification failed: ' + data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        showNotification('Verification failed. Please try again.');
+      });
+    });
+  }
 }
+
 
 function fetchUserDetails() {
   fetch('user_details.php')
@@ -901,7 +892,7 @@ function showNotification(message) {
     notification.classList.add("show");
     setTimeout(() => {
       notification.classList.remove("show");
-    }, 3000);
+    }, 4000);
   }
 }
 

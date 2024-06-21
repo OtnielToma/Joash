@@ -1,120 +1,281 @@
 const nodemailer = require('nodemailer');
 const fs = require('fs');
-const path = require('path');
 
-const logFilePath = '/usr/share/nginx/html/joash/order_debug.log';
+const logFilePath = 'order_debug.log';
 
 const sendEmail = (recipient_email, admin_email, orderId, items_table, total, shipping_info) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: 'joash.clothes@gmail.com',
-      pass: 'ahjsnwhkytucvppp' // Make sure this is the correct App Password
+      pass: 'ahjsnwhkytucvppp' 
     },
-    debug: true, // Enable debug output
-    logger: true // Log information
+    debug: true,
+    logger: true
   });
 
-  const { name, address, city, zip, method } = shipping_info;
+  const { name, address, city, zip, method, phone } = shipping_info;
 
   const body_html_customer = `
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
     <head>
-      <style>
-        table {
-          width: 100%;
-          border-collapse: collapse;
-        }
-        th, td {
-          border: 1px solid #ddd;
-          padding: 8px;
-          text-align: left;
-        }
-        th {
-          background-color: #f2f2f2;
-        }
-      </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Thank You for Your Order!</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+            body {
+                font-family: 'Bebas Neue', sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+                color: #333;
+            }
+            .email-container {
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: #ffffff;
+                padding: 20px;
+                border: 1px solid #dddddd;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .header {
+                text-align: center;
+                padding: 20px 0;
+            }
+            .logo {
+                font-family: 'Bebas Neue', sans-serif;
+                font-weight: bold;
+                font-size: 48px;
+                color: #ffffff;
+                background-color: #000000;
+                display: inline-block;
+                padding: 10px 20px;
+                border-radius: 4px;
+            }
+            .content {
+                text-align: left;
+                padding: 20px 0;
+            }
+            .content h1 {
+                font-size: 24px;
+                color: #333333;
+                margin-bottom: 10px;
+            }
+            .content p {
+                font-size: 16px;
+                color: #666666;
+                margin-bottom: 5px;
+            }
+            .table-container {
+                margin: 20px 0;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+                font-size: 14px;
+            }
+            th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+            }
+            .footer {
+                text-align: center;
+                padding: 20px 0;
+                font-size: 14px;
+                color: #999999;
+            }
+            .footer a {
+                color: #007BFF;
+                text-decoration: none;
+            }
+            .footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
     </head>
     <body>
-      <h1>Thank you for your order!</h1>
-      <p>Order ID: ${orderId}</p>
-      <p>Shipping Information:</p>
-      <p>Name: ${name}</p>
-      <p>Address: ${address}</p>
-      <p>City: ${city}</p>
-      <p>ZIP: ${zip}</p>
-      <p>Shipping Method: ${method}</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Size</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${items_table}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="4" style="text-align:right;"><strong>Grand Total</strong></td>
-            <td><strong>${total} Lei</strong></td>
-          </tr>
-        </tfoot>
-      </table>
+        <div class="email-container">
+            <div class="header">
+                <div class="logo">JOASH</div>
+            </div>
+            <div class="content">
+                <h1>Thank you for your order!</h1>
+                <p><strong>Order ID:</strong> ${orderId}</p>
+                <h2>Shipping Information:</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Address:</strong> ${address}</p>
+                <p><strong>City:</strong> ${city}</p>
+                <p><strong>ZIP:</strong> ${zip}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>Shipping Method:</strong> ${method}</p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Size</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${items_table}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" style="text-align:right;"><strong>Grand Total</strong></td>
+                                <td><strong>${total} Lei</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="footer">
+                <p>&copy; 2024 Joash. All rights reserved.</p>
+                <p>Contact us: <a href="mailto:support@joash.com">support@joash.com</a></p>
+            </div>
+        </div>
     </body>
     </html>`;
 
   const body_html_admin = `
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
     <head>
-      <style>
-        table {
-          width: 100%;
-          border-collapse: collapse;
-        }
-        th, td {
-          border: 1px solid #ddd;
-          padding: 8px;
-          text-align: left;
-        }
-        th {
-          background-color: #f2f2f2;
-        }
-      </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>New Order Received</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+            body {
+                font-family: 'Bebas Neue', sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+                color: #333;
+            }
+            .email-container {
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: #ffffff;
+                padding: 20px;
+                border: 1px solid #dddddd;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .header {
+                text-align: center;
+                padding: 20px 0;
+            }
+            .logo {
+                font-family: 'Bebas Neue', sans-serif;
+                font-weight: bold;
+                font-size: 48px;
+                color: #ffffff;
+                background-color: #000000;
+                display: inline-block;
+                padding: 10px 20px;
+                border-radius: 4px;
+            }
+            .content {
+                text-align: left;
+                padding: 20px 0;
+            }
+            .content h1 {
+                font-size: 24px;
+                color: #333333;
+                margin-bottom: 10px;
+            }
+            .content p {
+                font-size: 16px;
+                color: #666666;
+                margin-bottom: 5px;
+            }
+            .table-container {
+                margin: 20px 0;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+                font-size: 14px;
+            }
+            th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+            }
+            .footer {
+                text-align: center;
+                padding: 20px 0;
+                font-size: 14px;
+                color: #999999;
+            }
+            .footer a {
+                color: #007BFF;
+                text-decoration: none;
+            }
+            .footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
     </head>
     <body>
-      <h1>New Order Received</h1>
-      <p>Order ID: ${orderId}</p>
-      <p>Customer Name: ${name}</p>
-      <p>Customer Email: ${recipient_email}</p>
-      <p>Shipping Information:</p>
-      <p>Address: ${address}</p>
-      <p>City: ${city}</p>
-      <p>ZIP: ${zip}</p>
-      <p>Shipping Method: ${method}</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Size</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${items_table}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="4" style="text-align:right;"><strong>Grand Total</strong></td>
-            <td><strong>${total} Lei</strong></td>
-          </tr>
-        </tfoot>
-      </table>
+        <div class="email-container">
+            <div class="header">
+                <div class="logo">JOASH</div>
+            </div>
+            <div class="content">
+                <h1>New Order Received</h1>
+                <p><strong>Order ID:</strong> ${orderId}</p>
+                <p><strong>Customer Name:</strong> ${name}</p>
+                <p><strong>Customer Email:</strong> ${recipient_email}</p>
+                <h2>Shipping Information:</h2>
+                <p><strong>Address:</strong> ${address}</p>
+                <p><strong>City:</strong> ${city}</p>
+                <p><strong>ZIP:</strong> ${zip}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>Shipping Method:</strong> ${method}</p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Size</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${items_table}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" style="text-align:right;"><strong>Grand Total</strong></td>
+                                <td><strong>${total} Lei</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="footer">
+                <p>&copy; 2024 Joash. All rights reserved.</p>
+                <p>Contact us: <a href="mailto:support@joash.com">support@joash.com</a></p>
+            </div>
+        </div>
     </body>
     </html>`;
 
@@ -161,29 +322,24 @@ const sendEmail = (recipient_email, admin_email, orderId, items_table, total, sh
   });
 };
 
-// Read command-line arguments
 const args = process.argv.slice(2);
-const [recipient_email, orderId, items_table, total, name, address, city, zip, method] = args;
+const [recipient_email, orderId, items_table, total, name, address, city, zip, method, phone] = args;
 
-// Clear the log file at the start
 fs.writeFileSync(logFilePath, '');
 
-// Log the command-line arguments
 fs.appendFile(logFilePath, `Arguments: ${JSON.stringify(args)}\n`, (err) => {
   if (err) console.error('Failed to write to log file:', err);
 });
 
-// Construct shipping info object
 const shipping_info = {
   name,
   address,
   city,
   zip,
-  method
+  method,
+  phone
 };
 
-// Admin email address
 const admin_email = 'joash.clothes@gmail.com';
 
-// Call sendEmail with parsed arguments
 sendEmail(recipient_email, admin_email, orderId, items_table, total, shipping_info);

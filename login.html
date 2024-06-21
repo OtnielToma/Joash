@@ -21,7 +21,7 @@
     <div id="notification" class="notification"></div>
   </div>
   <main>
-    <section id="login" style="display: grid;">
+    <section id="loginSection">
       <div class="container" id="acc1" style="display: flex; flex-direction: column; align-content: center; justify-content: center; align-items: center;margin-top: 0%">
         <form id="loginForm" action="login.php" method="POST">
           <input type="email" name="email" placeholder="Email" required>
@@ -32,20 +32,31 @@
       </div>
     </section>
 
+    <section id="verificationSection" style="display: none;">
+      <div class="container">
+        <h2>Verify Your Account</h2>
+        <form id="verificationForm">
+          <input type="text" name="verification_code" placeholder="Verification Code" required>
+          <button type="submit" id="verifyBtn" class="LinkButton1 Primary">Verify</button>
+        </form>
+      </div>
+    </section>
+
     <div id="signup-error" style="display: none;"></div>
   </main>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       setupLoginForm();
+      setupVerificationForm();
     });
 
     function setupLoginForm() {
-      const container = document.getElementById('loginForm');
-      if (container) {
-        container.addEventListener('submit', function(event) {
+      const loginForm = document.getElementById('loginForm');
+      if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
           event.preventDefault();
-          const formData = new FormData(container);
+          const formData = new FormData(loginForm);
 
           fetch('login.php', {
             method: 'POST',
@@ -60,6 +71,11 @@
               setTimeout(() => {
                 window.location.href = 'account.html';
               }, 3000);
+            } else if (data.is_verified === false) {
+              showNotification(data.message);
+              document.getElementById('loginSection').style.display = 'none';
+              document.getElementById('verificationSection').style.display = 'block';
+              document.getElementById('verificationForm').dataset.email = formData.get('email');
             } else {
               showNotification('Login failed: ' + data.message);
             }
@@ -67,6 +83,37 @@
           .catch(error => {
             console.error('Error:', error);
             showNotification('Login failed. Please try again.');
+          });
+        });
+      }
+    }
+
+    function setupVerificationForm() {
+      const verificationForm = document.getElementById('verificationForm');
+      if (verificationForm) {
+        verificationForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+          const formData = new FormData(verificationForm);
+          formData.append('email', verificationForm.dataset.email);
+
+          fetch('verify.php', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              showNotification('Verification successful. Redirecting to account...');
+              setTimeout(() => {
+                window.location.href = 'account.html';
+              }, 3000); // Adjust the delay as needed
+            } else {
+              showNotification('Verification failed: ' + data.message);
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            showNotification('Verification failed. Please try again.');
           });
         });
       }
@@ -83,16 +130,15 @@
       }
     }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const logo = document.querySelector(".Logo");
+    document.addEventListener("DOMContentLoaded", () => {
+      const logo = document.querySelector(".Logo");
 
-    if (logo) {
+      if (logo) {
         logo.addEventListener("click", () => {
-            window.location.href = "index.html#home";
+          window.location.href = "index.html#home";
         });
-    }
-});
-
+      }
+    });
   </script>
 
   <script src="menu.js"></script>
