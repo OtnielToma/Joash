@@ -1,125 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - Clothing Shop</title>
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <nav class="Navbar">
-    <div class="container">
-      <div class="Logo">Joash</div>
-      <div id="menu" class="menu">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Clothing Shop</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <nav class="Navbar">
+      <div class="container">
+        <div class="Logo">Joash</div>
+        <div id="menu" class="menu">
 
-        <header class="inline">
-          <div  class="Navbar"></div>
-        </header>
-        <a href="index.html#home" class="NavLink">Home </a>
-        <a href="index.html#tshirts" class="NavLink">T-Shirts</a>
-        <a href="index.html#hoodies" class="NavLink">Hoodies</a>
-        <div class="account-dropdown">
-          <button  class="account-button"><i class="ri-user-line"></i></button>
-          <div class="account-menu" id="accountMenu">
-            <a href="account.html" onclick="navigateAndOpenTab(event, 'Details')" class="dropdown-link"><i class="ri-user-line"></i> My Account</a>
-		 <a href="account.html" onclick="navigateAndOpenTab(event, 'Orders')" class="dropdown-link">
-              <i class="ri-shopping-bag-line"></i> My Orders
+          <header class="inline">
+            <div class="Navbar"></div>
+          </header>
+          <a href="index.html#home" class="NavLink">Home </a>
+          <a href="index.html#tshirts" class="NavLink">T-Shirts</a>
+          <a href="index.html#hoodies" class="NavLink">Hoodies</a>
+          <div class="account-dropdown">
+            <button class="account-button"><i class="ri-user-line"></i></button>
+            <div class="account-menu" id="accountMenu">
+              <a href="account.html"
+                onclick="navigateAndOpenTab(event, 'Details')"
+                class="dropdown-link"><i class="ri-user-line"></i> My
+                Account</a>
+              <a href="account.html"
+                onclick="navigateAndOpenTab(event, 'Orders')"
+                class="dropdown-link">
+                <i class="ri-shopping-bag-line"></i> My Orders
+              </a>
+            </div>
+          </div>
+          <div class="cart-container">
+            <a href="cart.html" class="NavLink cart-link">
+              <i class="ri-shopping-cart-line"></i>
+              <span class="cart-count">0</span>
             </a>
-        </div>
-      </div>
-        <div class="cart-container">
-          <a href="cart.html" class="NavLink cart-link">
-            <i class="ri-shopping-cart-line"></i>
-            <span class="cart-count">0</span>
-          </a>
-          <div class="cart-dropdown">
-            <h3>Your Cart</h3>
-            <div class="cart-list"></div>
-            <a href="cart.html" class="LinkButton Primary">Go to Cart</a>
-          </div>
+            <div class="cart-dropdown">
+              <h3>Your Cart</h3>
+              <div class="cart-list"></div>
+              <a href="cart.html" class="LinkButton Primary">Go to Cart</a>
+            </div>
 
-              <div class="cart-list">
-                <!-- Cart items will be dynamically loaded here -->
-              </div>
-        </div>
-      </div>
-
-      <div class="container_menu">
-        <div class="mobile-menu1">
-          <div class="hamburger-menu" onclick="toggleMenu()">
-            <div class="bar"></div>
-            <div class="bar middle-bar"></div>
-            <div class="bar"></div>
-          </div>
-          <div id="index" class="dropdown-menu" >
-            
-            <div class="menu-item" data-href="index.html#tshirts">T-Shirts</div>
-            <div class="menu-item" data-href="index.html#hoodies">Hoodies</div>
-            <div class="menu-item" data-href="account.html">Account</div>
-          </div>
-      </div>
-  
-      <div class="cart-container1">
-        <a  class="NavLink cart-link1">
-          <i class="ri-shopping-cart-line"></i>
-          <span class="cart-count">0</span>
-        </a>
-        <div class="cart-dropdown">
-          <h3>Your Cart</h3>
-          <div class="cart-list"></div>
-          <a href="cart.html" class="LinkButton Primary">Go to Cart</a>
-        </div>
-  
             <div class="cart-list">
               <!-- Cart items will be dynamically loaded here -->
             </div>
+          </div>
+        </div>
+
+        <div class="container_menu">
+          <div class="mobile-menu1">
+            <div class="hamburger-menu" onclick="toggleMenu()">
+              <div class="bar"></div>
+              <div class="bar middle-bar"></div>
+              <div class="bar"></div>
+            </div>
+            <div id="index" class="dropdown-menu">
+
+              <div class="menu-item"
+                data-href="index.html#tshirts">T-Shirts</div>
+              <div class="menu-item"
+                data-href="index.html#hoodies">Hoodies</div>
+              <div class="menu-item" data-href="account.html">Account</div>
+            </div>
+          </div>
+
+          <div class="cart-container1">
+            <a class="NavLink cart-link1">
+              <i class="ri-shopping-cart-line"></i>
+              <span class="cart-count">0</span>
+            </a>
+            <div class="cart-dropdown">
+              <h3>Your Cart</h3>
+              <div class="cart-list"></div>
+              <a href="cart.html" class="LinkButton Primary">Go to Cart</a>
+            </div>
+
+            <div class="cart-list">
+              <!-- Cart items will be dynamically loaded here -->
+            </div>
+          </div>
+
+        </div>
+
       </div>
-  
-      </div>
+    </nav>
 
-   
-    </div>
-  </nav>
+    <div id="notification" class="notification"></div>
 
-  <div id="notification" class="notification"></div>
+    <main>
+      <section id="signup">
+        <div class="container">
+          <h2>Sign Up</h2>
+          <form id="signupForm" action="signup.php" method="POST">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password"
+              required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <button type="submit"
+              style="border-radius: 10px; background-color: #ff6500;">Sign
+              Up</button>
+          </form>
+        </div>
+      </section>
 
-  <main>
-    <section id="signup">
-      <div class="container">
-        <h2>Sign Up</h2>
-        <form id="signupForm" action="signup.php" method="POST">
-          <input type="text" name="name" placeholder="Name" required>
-          <input type="email" name="email" placeholder="Email" required>
-          <input type="password" name="password" placeholder="Password" required>
-          <input type="tel" name="phone" placeholder="Phone Number" required>
-          <button type="submit" style="border-radius: 10px; background-color: #ff6500;">Sign Up</button>
-        </form>
-      </div>
-    </section>
+      <section id="verificationSection" style="display: none;">
+        <div class="container">
+          <h2>Verify Your Email</h2>
+          <form id="verificationForm">
+            <input type="text" name="verification_code"
+              placeholder="Verification Code" required>
+            <button type="submit"
+              style="border-radius: 10px; background-color: #ff6500;">Verify</button>
+          </form>
+        </div>
+      </section>
 
-    <section id="verificationSection" style="display: none;">
-      <div class="container">
-        <h2>Verify Your Email</h2>
-        <form id="verificationForm">
-          <input type="text" name="verification_code" placeholder="Verification Code" required>
-          <button type="submit" style="border-radius: 10px; background-color: #ff6500;">Verify</button>
-        </form>
-      </div>
-    </section>
+    </main>
 
-  </main>
-  
- 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMLBNKV9JM"></script>
-<script>
+    <script async
+      src="https://www.googletagmanager.com/gtag/js?id=G-WMLBNKV9JM"></script>
+    <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-WMLBNKV9JM');
 </script>
-<script src="main.js"></script>
-<script src="menu.js"></script>
-</body>
+    <script src="main.js"></script>
+    <script src="menu.js"></script>
+  </body>
 </html>

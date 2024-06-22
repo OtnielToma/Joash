@@ -4,19 +4,19 @@ const fs = require('fs');
 const logFilePath = 'order_debug.log';
 
 const sendEmail = (recipient_email, admin_email, orderId, items_table, total, shipping_info) => {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'joash.clothes@gmail.com',
-      pass: 'ahjsnwhkytucvppp' 
-    },
-    debug: true,
-    logger: true
-  });
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'joash.clothes@gmail.com',
+            pass: 'ahjsnwhkytucvppp'
+        },
+        debug: true,
+        logger: true
+    });
 
-  const { name, address, city, zip, method, phone } = shipping_info;
+    const { name, address, city, zip, method, phone } = shipping_info;
 
-  const body_html_customer = `
+    const body_html_customer = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -147,7 +147,7 @@ const sendEmail = (recipient_email, admin_email, orderId, items_table, total, sh
     </body>
     </html>`;
 
-  const body_html_admin = `
+    const body_html_admin = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -279,47 +279,47 @@ const sendEmail = (recipient_email, admin_email, orderId, items_table, total, sh
     </body>
     </html>`;
 
-  const mailOptionsCustomer = {
-    from: 'joash.clothes@gmail.com',
-    to: recipient_email,
-    subject: `Order Confirmation - Order #${orderId}`,
-    html: body_html_customer
-  };
+    const mailOptionsCustomer = {
+        from: 'joash.clothes@gmail.com',
+        to: recipient_email,
+        subject: `Order Confirmation - Order #${orderId}`,
+        html: body_html_customer
+    };
 
-  const mailOptionsAdmin = {
-    from: 'joash.clothes@gmail.com',
-    to: admin_email,
-    subject: `New Order Received - Order #${orderId}`,
-    html: body_html_admin
-  };
+    const mailOptionsAdmin = {
+        from: 'joash.clothes@gmail.com',
+        to: admin_email,
+        subject: `New Order Received - Order #${orderId}`,
+        html: body_html_admin
+    };
 
-  transporter.sendMail(mailOptionsCustomer, (error, info) => {
-    if (error) {
-      console.error('Error sending email to customer:', error);
-      fs.appendFile(logFilePath, `Error sending email to customer: ${error}\n`, (err) => {
-        if (err) console.error('Failed to write to log file:', err);
-      });
-    } else {
-      console.log('Customer email sent:', info.response);
-      fs.appendFile(logFilePath, `Customer email sent: ${info.response}\n`, (err) => {
-        if (err) console.error('Failed to write to log file:', err);
-      });
-    }
-  });
+    transporter.sendMail(mailOptionsCustomer, (error, info) => {
+        if (error) {
+            console.error('Error sending email to customer:', error);
+            fs.appendFile(logFilePath, `Error sending email to customer: ${error}\n`, (err) => {
+                if (err) console.error('Failed to write to log file:', err);
+            });
+        } else {
+            console.log('Customer email sent:', info.response);
+            fs.appendFile(logFilePath, `Customer email sent: ${info.response}\n`, (err) => {
+                if (err) console.error('Failed to write to log file:', err);
+            });
+        }
+    });
 
-  transporter.sendMail(mailOptionsAdmin, (error, info) => {
-    if (error) {
-      console.error('Error sending email to admin:', error);
-      fs.appendFile(logFilePath, `Error sending email to admin: ${error}\n`, (err) => {
-        if (err) console.error('Failed to write to log file:', err);
-      });
-    } else {
-      console.log('Admin email sent:', info.response);
-      fs.appendFile(logFilePath, `Admin email sent: ${info.response}\n`, (err) => {
-        if (err) console.error('Failed to write to log file:', err);
-      });
-    }
-  });
+    transporter.sendMail(mailOptionsAdmin, (error, info) => {
+        if (error) {
+            console.error('Error sending email to admin:', error);
+            fs.appendFile(logFilePath, `Error sending email to admin: ${error}\n`, (err) => {
+                if (err) console.error('Failed to write to log file:', err);
+            });
+        } else {
+            console.log('Admin email sent:', info.response);
+            fs.appendFile(logFilePath, `Admin email sent: ${info.response}\n`, (err) => {
+                if (err) console.error('Failed to write to log file:', err);
+            });
+        }
+    });
 };
 
 const args = process.argv.slice(2);
@@ -328,16 +328,16 @@ const [recipient_email, orderId, items_table, total, name, address, city, zip, m
 fs.writeFileSync(logFilePath, '');
 
 fs.appendFile(logFilePath, `Arguments: ${JSON.stringify(args)}\n`, (err) => {
-  if (err) console.error('Failed to write to log file:', err);
+    if (err) console.error('Failed to write to log file:', err);
 });
 
 const shipping_info = {
-  name,
-  address,
-  city,
-  zip,
-  method,
-  phone
+    name,
+    address,
+    city,
+    zip,
+    method,
+    phone
 };
 
 const admin_email = 'joash.clothes@gmail.com';

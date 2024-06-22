@@ -1,8 +1,3 @@
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
   setupCart();
 
@@ -15,14 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
   loadHoodies();
   loadOrders();
 
-  // Add event listeners for input validation feedback
   const inputFields = document.querySelectorAll('.input-field');
   inputFields.forEach(field => {
-    field.addEventListener('invalid', function() {
+    field.addEventListener('invalid', function () {
       this.classList.add('input-error');
     });
 
-    field.addEventListener('input', function() {
+    field.addEventListener('input', function () {
       if (this.validity.valid) {
         this.classList.remove('input-error');
       }
@@ -30,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  
 
-const cartSection = document.getElementById('cart');
+
+  const cartSection = document.getElementById('cart');
   const orderProcessSection = document.getElementById('order-process');
   if (!cartSection || !orderProcessSection) {
     console.error('Required sections not found in the DOM.');
@@ -47,29 +41,29 @@ const cartSection = document.getElementById('cart');
 document.addEventListener("DOMContentLoaded", () => {
   const orderForm = document.getElementById('orderForm');
   if (orderForm) {
-    orderForm.addEventListener('submit', function(event) {
+    orderForm.addEventListener('submit', function (event) {
       event.preventDefault();
 
       const formData = new FormData(this);
-      const cart = getCart(); // Assume getCart() returns the cart items array
+      const cart = getCart(); 
       formData.append('cart', JSON.stringify(cart));
 
       fetch('place_order.php', {
         method: 'POST',
         body: formData,
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          clearCart();
-          showOrderOverview(data.order_id);
-        } else {
-          showNotification(data.message);
-        }
-      })
-      .catch(error => {
-        showNotification('Failed to place order. Please try again.');
-      });
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            clearCart();
+            showOrderOverview(data.order_id);
+          } else {
+            showNotification(data.message);
+          }
+        })
+        .catch(error => {
+          showNotification('Failed to place order. Please try again.');
+        });
     });
   }
 });
@@ -82,21 +76,12 @@ function setupCart() {
 
 
 
-
-
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const sections = ['home', 'product', 'tshirts', 'hoodies'];
   let currentSectionIndex = 0;
   let isScrolling = false;
-  const mouseScrollDuration = 1400; // Duration for mouse scroll events
-  const otherScrollDuration = 300;  // Duration for other scroll events
+  const mouseScrollDuration = 1400; 
+  const otherScrollDuration = 300;  
 
   function initializeCurrentSectionIndex() {
     const hash = window.location.hash.substring(1);
@@ -104,14 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const initialIndex = sections.indexOf(hash);
       if (initialIndex !== -1) {
         currentSectionIndex = initialIndex;
-        scrollToSection(currentSectionIndex, 0); // Scroll to the initial section without delay
+        scrollToSection(currentSectionIndex, 0); 
         localStorage.setItem('currentSectionIndex', currentSectionIndex);
       }
     } else {
       const storedIndex = localStorage.getItem('currentSectionIndex');
       if (storedIndex !== null) {
         currentSectionIndex = parseInt(storedIndex, 10);
-        scrollToSection(currentSectionIndex, 10); // Scroll to the stored section without delay
+        scrollToSection(currentSectionIndex, 10); 
       } else {
         const currentSection = sections.findIndex(sectionId => {
           const section = document.getElementById(sectionId);
@@ -136,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function handleScroll(event) {
     if (isScrolling) return;
-    const duration = mouseScrollDuration; 
+    const duration = mouseScrollDuration;
     if (event.deltaY > 0) {
       scrollToSection(currentSectionIndex + 1, duration);
     } else {
@@ -179,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('wheel', handleScroll);
   document.addEventListener('wheel', (event) => {
-    event.preventDefault(); // Prevent default scroll behavior
+    event.preventDefault(); 
     handleScroll(event);
   }, { passive: false });
 
@@ -187,86 +172,65 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('touchstart', handleTouchStart);
   document.addEventListener('touchmove', handleTouchMove);
 
-  // Handle button clicks
   document.querySelectorAll('.LinkButton, .NavLink, .Logo').forEach(link => {
     link.addEventListener('click', (event) => {
       let href = event.target.getAttribute('href') || event.target.getAttribute('data-href');
-  
-      // Ensure href is not null
+
       if (href) {
         const targetId = href.substring(1);
         const targetSection = document.getElementById(targetId);
-  
+
         if (targetSection) {
           event.preventDefault();
           updateCurrentSectionIndex(targetId);
           scrollToSection(currentSectionIndex, otherScrollDuration);
         } else {
-          // Allow default behavior for links navigating to different pages
-          // Ensure the href attribute has the correct link to the target page
           localStorage.setItem('currentSectionIndex', sections.indexOf(targetId));
           window.location.href = href;
         }
       } else {
-        // Handle the case where href is null, perhaps log an error or ignore the click
         console.error('The href attribute is missing or invalid for the clicked link.');
       }
     });
 
-  document.querySelectorAll('.menu-item1').forEach(link => {
-    link.addEventListener('click', (event) => {
-      const href = event.currentTarget.getAttribute('data-href');
+    document.querySelectorAll('.menu-item1').forEach(link => {
+      link.addEventListener('click', (event) => {
+        const href = event.currentTarget.getAttribute('data-href');
 
-      // Ensure href is not null
-      if (href) {
-        const targetId = href.substring(1);
-        localStorage.setItem('currentSectionIndex', sections.indexOf(targetId));
-        window.location.href = href;
-      } else {
-        // Handle the case where href is null, perhaps log an error or ignore the click
-        console.error('The data-href attribute is missing or invalid for the clicked link.');
-      }
+        if (href) {
+          const targetId = href.substring(1);
+          localStorage.setItem('currentSectionIndex', sections.indexOf(targetId));
+          window.location.href = href;
+        } else {
+          console.error('The data-href attribute is missing or invalid for the clicked link.');
+        }
+      });
     });
+
+    initializeCurrentSectionIndex();
   });
-
-  // Initialize current section index
-  initializeCurrentSectionIndex();
-});
-
-
-
-
-
-
-
-
-
-
-
 
 
   document.querySelectorAll('.menu-item1').forEach(link => {
     link.addEventListener('click', (event) => {
       const href = event.currentTarget.getAttribute('data-href');
 
-      // Ensure href is not null
       if (href) {
         const targetId = href.substring(1);
         localStorage.setItem('currentSectionIndex', sections.indexOf(targetId));
         window.location.href = href;
       } else {
-        // Handle the case where href is null, perhaps log an error or ignore the click
         console.error('The data-href attribute is missing or invalid for the clicked link.');
       }
     });
   });
 
-  // Handle image-container clicks
+
   document.querySelectorAll('.Logo, .menu-item, .image-container1, .image-container2').forEach(link => {
     link.addEventListener('click', (event) => {
       const href = event.currentTarget.getAttribute('data-href');
 
-      // Ensure href is not null
+
       if (href) {
         const targetId = href.substring(1);
         const targetSection = document.getElementById(targetId);
@@ -276,19 +240,16 @@ document.addEventListener('DOMContentLoaded', () => {
           updateCurrentSectionIndex(targetId);
           scrollToSection(currentSectionIndex, otherScrollDuration);
         } else {
-          // Allow default behavior for links navigating to different pages
-          // Ensure the href attribute has the correct link to the target page
+
           localStorage.setItem('currentSectionIndex', sections.indexOf(targetId));
           window.location.href = href;
         }
       } else {
-        // Handle the case where href is null, perhaps log an error or ignore the click
         console.error('The data-href attribute is missing or invalid for the clicked link.');
       }
     });
   });
 
-  // Initialize current section index
   initializeCurrentSectionIndex();
 });
 
@@ -315,11 +276,10 @@ function addToCart() {
 
   const productId = productIdElement.value;
   const productName = productNameElement.textContent;
- const price = parseFloat(priceElement.textContent.replace('Lei', '').trim());
+  const price = parseFloat(priceElement.textContent.replace('Lei', '').trim());
   const productCategory = productCategoryElement.value;
   const product = { id: productId, name: productName, price, size, category: productCategory, quantity: 1 };
 
-  // Add to cart logic
   const existingProduct = cart.find(item => item.id === product.id && item.size === product.size);
   if (existingProduct) {
     existingProduct.quantity += 1;
@@ -438,10 +398,10 @@ function startOrderProcess() {
 
 function showOrderOverview(orderId) {
   fetch(`order_details.php?order_id=${orderId}`)
-  .then(response => response.json())
-  .then(order => {
-    const orderOverview = document.createElement('div');
-    orderOverview.innerHTML = `
+    .then(response => response.json())
+    .then(order => {
+      const orderOverview = document.createElement('div');
+      orderOverview.innerHTML = `
       <div class="container" id="set1">
         <h3>Order Overview</h3>
         <p>Order ID: ${order.id}</p>
@@ -456,15 +416,15 @@ function showOrderOverview(orderId) {
         <a id="back" href="index.html#home" class="NavLink back-link">back to home</a>
       </div>
     `;
-    showNotification("Order placed successfully!");
-    const orderProcessSection = document.getElementById('order-process');
-    orderProcessSection.innerHTML = '';
-    orderProcessSection.appendChild(orderOverview);
-  })
-  .catch(error => console.error('Error fetching order details:', error));
+      showNotification("Order placed successfully!");
+      const orderProcessSection = document.getElementById('order-process');
+      orderProcessSection.innerHTML = '';
+      orderProcessSection.appendChild(orderOverview);
+    })
+    .catch(error => console.error('Error fetching order details:', error));
 }
 
-// Add this CSS to style the back link
+
 const style = document.createElement('style');
 style.innerHTML = `
   .back-link {
@@ -538,7 +498,6 @@ function loadOrderSummary() {
 
 
 
-
 function injectCSS() {
   const style = document.createElement('style');
   style.innerHTML = `
@@ -556,10 +515,6 @@ function injectCSS() {
   `;
   document.head.appendChild(style);
 }
-
-
-
-
 
 
 function setupAccountPage() {
@@ -607,12 +562,11 @@ function setupAccountPage() {
       })
       .catch(error => {
         console.error('Error:', error);
-    
-        // Check if the current page is account.html
+
         if (window.location.pathname.endsWith('account.html')) {
-            showNotification('Failed to load account details. Please try again.');
+          showNotification('Failed to load account details. Please try again.');
         }
-    });
+      });
 
     document.getElementById('account').classList.remove('hidden');
     document.getElementById('login').classList.add('hidden');
@@ -621,17 +575,15 @@ function setupAccountPage() {
     document.getElementById('login').classList.remove('hidden');
     setTimeout(() => {
       window.location.href = 'login.html';
-    }, 3000); // Redirect after showing notification
+    }, 2000); 
   }
 }
-
-
 
 
 function setupSignupForm() {
   const signupForm = document.getElementById('signupForm');
   if (signupForm) {
-    signupForm.addEventListener('submit', function(event) {
+    signupForm.addEventListener('submit', function (event) {
       event.preventDefault();
       const formData = new FormData(signupForm);
 
@@ -639,27 +591,27 @@ function setupSignupForm() {
         method: 'POST',
         body: formData
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          showNotification('Signup successful. Please check your email for the verification code.');
-          document.getElementById('signup').style.display = 'none';
-          document.getElementById('verificationSection').style.display = 'block';
-          document.getElementById('verificationForm').dataset.email = formData.get('email');
-        } else {
-          showNotification('Signup failed: ' + data.message);
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        showNotification('Signup failed. Please try again.');
-      });
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            showNotification('Signup successful. Please check your email for the verification code.');
+            document.getElementById('signup').style.display = 'none';
+            document.getElementById('verificationSection').style.display = 'block';
+            document.getElementById('verificationForm').dataset.email = formData.get('email');
+          } else {
+            showNotification('Signup failed: ' + data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          showNotification('Signup failed. Please try again.');
+        });
     });
   }
 
   const verificationForm = document.getElementById('verificationForm');
   if (verificationForm) {
-    verificationForm.addEventListener('submit', function(event) {
+    verificationForm.addEventListener('submit', function (event) {
       event.preventDefault();
       const formData = new FormData(verificationForm);
       formData.append('email', verificationForm.dataset.email);
@@ -668,21 +620,21 @@ function setupSignupForm() {
         method: 'POST',
         body: formData
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          showNotification('Verification successful. Redirecting to login...');
-          setTimeout(() => {
-            window.location.href = 'login.html';
-          }, 3000); // Adjust the delay as needed
-        } else {
-          showNotification('Verification failed: ' + data.message);
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        showNotification('Verification failed. Please try again.');
-      });
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            showNotification('Verification successful. Redirecting to login...');
+            setTimeout(() => {
+              window.location.href = 'login.html';
+            }, 3000); // Adjust the delay as needed
+          } else {
+            showNotification('Verification failed: ' + data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          showNotification('Verification failed. Please try again.');
+        });
     });
   }
 }
@@ -795,33 +747,6 @@ function loadHoodies() {
     productContainer.appendChild(productElement);
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -957,7 +882,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartLinkMobile = document.querySelector('.cart-container1 .cart-link1');
   const cartDropdownMobile = document.querySelector('.cart-container1 .cart-dropdown');
 
-  // PC menu
   if (cartLinkPC && cartDropdownPC) {
     cartLinkPC.addEventListener('click', (e) => {
       e.preventDefault();
@@ -981,7 +905,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Mobile menu
   if (cartLinkMobile && cartDropdownMobile) {
     cartLinkMobile.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1001,27 +924,23 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
-  
+
   document.querySelectorAll('.LinkButton, .NavLink').forEach(link => {
     link.addEventListener('click', (event) => {
       let href = event.target.getAttribute('href') || event.target.getAttribute('data-href');
-  
-      // Ensure href is not null
+
       if (href) {
         const targetId = href.substring(1);
         const targetSection = document.getElementById(targetId);
-  
+
         if (targetSection) {
           event.preventDefault();
           updateCurrentSectionIndex(targetId);
           scrollToSection(currentSectionIndex, otherScrollDuration);
         } else {
-          // Allow default behavior for links navigating to different pages
-          // Ensure the href attribute has the correct link to the target page
           window.location.href = href;
         }
       } else {
-        // Handle the case where href is null, perhaps log an error or ignore the click
         console.error('The href attribute is missing or invalid for the clicked link.');
       }
     });

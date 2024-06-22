@@ -62,13 +62,13 @@ function setupAccountPage() {
       })
       .catch(error => {
         console.error('Error:', error);
-    
+
         // Check if the current page is account.html
         if (window.location.pathname.endsWith('account.html')) {
-            showNotification('Failed to load account details. Please try again.');
+          showNotification('Failed to load account details. Please try again.');
         }
-    });
-    
+      });
+
 
     document.getElementById('account').classList.remove('hidden');
     document.getElementById('login').classList.add('hidden');
