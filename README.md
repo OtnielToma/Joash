@@ -7,7 +7,11 @@ Acest document oferă o prezentare generală a aplicației web pentru magazinul 
 ## Repository
 
 Codul sursă complet pentru acest proiect este disponibil pe GitHub:
-[Repository Aplicație Web Magazin de Îmbrăcăminte](https://github.com/OtnielToma/Joash)
+[Repository Aplicație Web Joash](https://github.com/OtnielToma/Joash)
+
+## Hosting Live
+
+Proiectul este hostat live pe o instanță EC2 de AWS și este accesibil la adresa: [www.joash.store](http://www.joash.store)
 
 ## Fisierele Proiectului
 
@@ -47,6 +51,11 @@ Proiectul cuprinde următoarele fișiere și directoare principale:
 - `user_orders.php`: Script pentru comenzi utilizator
 - `vendor`: Director pentru dependențele Composer
 - `verify.php`: Script pentru verificarea emailurilor
+
+## Vizualizare Rapidă
+
+Pentru a vizualiza rapid aplicația, fișierul index.html va deschide pagina principală a aplicației web, oferind acces la toate paginile acesteia. Totuși, anumite funcționalități (logare, înregistrare, plasare comandă și trimiterea de emailuri) nu vor fi disponibile din cauza lipsei serviciilor necesare pentru acestea.
+
 
 ## Schema Bazei de Date
 
@@ -182,15 +191,65 @@ Asigurați-vă că următoarele servicii și unelte sunt instalate pe sistemul d
 
 3. **Instalați dependențele Node.js:**
    ```sh
+
+
    npm install
    ```
 
 4. **Configurați baza de date:**
    - Deschideți MariaDB și creați o nouă bază de date numită `clothing_shop`.
-   - Importați schema bazei de date din fișierul SQL furnizat (
-
-dacă este disponibil).
+   - Importați schema bazei de date din fișierul SQL furnizat.
    - Actualizați fișierul `db.php` cu detaliile de conexiune la baza de date.
+   - Crearea bazei de date
+   ```sh
+   CREATE DATABASE clothing_shop;
+
+   USE clothing_shop;
+
+   CREATE TABLE users (
+      id INT(11) NOT NULL AUTO_INCREMENT,
+      name VARCHAR(100) NOT NULL,
+      email VARCHAR(100) NOT NULL UNIQUE,
+      phone VARCHAR(15),
+      password VARCHAR(255) NOT NULL,
+      PRIMARY KEY (id)
+   );
+
+   CREATE TABLE orders (
+      id INT(11) NOT NULL AUTO_INCREMENT,
+      user_id INT(11) NOT NULL,
+      total_price DECIMAL(10,2) NOT NULL,
+      order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      shipping_name VARCHAR(255) NOT NULL,
+      shipping_address VARCHAR(255) NOT NULL,
+      shipping_city VARCHAR(255) NOT NULL,
+      shipping_zip VARCHAR(20) NOT NULL,
+      shipping_method VARCHAR(50) NOT NULL,
+      PRIMARY KEY (id),
+      FOREIGN KEY (user_id) REFERENCES users(id)
+   );
+
+   CREATE TABLE products (
+      id INT(11) NOT NULL AUTO_INCREMENT,
+      name VARCHAR(255) NOT NULL,
+      price DECIMAL(10,2) NOT NULL,
+      category VARCHAR(255) NOT NULL,
+      sizes VARCHAR(255) NOT NULL,
+      PRIMARY KEY (id)
+   );
+
+   CREATE TABLE order_details (
+      id INT(11) NOT NULL AUTO_INCREMENT,
+      order_id INT(11) NOT NULL,
+      product_id INT(11) NOT NULL,
+      quantity INT(11) NOT NULL,
+      price DECIMAL(10,2) NOT NULL,
+      size VARCHAR(5) NOT NULL,
+      PRIMARY KEY (id),
+      FOREIGN KEY (order_id) REFERENCES orders(id),
+      FOREIGN KEY (product_id) REFERENCES products(id)
+   );
+   ```
 
 ### Lansarea Aplicației
 
@@ -209,5 +268,4 @@ dacă este disponibil).
 - Pentru trimiterea emailurilor, asigurați-vă că ați configurat scripturile `send_verification_email.js` și `sendEmail.js` cu detaliile furnizorului de servicii de email.
 - Utilizați `phpMyAdmin` pentru gestionarea bazei de date (opțional).
 
-Aceasta ar trebui să vă ofere toate informațiile necesare pentru a pune în funcțiune aplicația web pentru magazinul de îmbrăcăminte Joash pe un sistem nou.
-
+Aceasta ar trebui să ofere toate informațiile necesare pentru a pune în funcțiune aplicația web pentru magazinul de îmbrăcăminte Joash pe un sistem nou.
