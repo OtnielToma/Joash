@@ -9,7 +9,7 @@ Acest document oferă o prezentare generală a aplicației web pentru magazinul 
 Codul sursă complet pentru acest proiect este disponibil pe GitHub:
 [Repository Aplicație Web Magazin de Îmbrăcăminte](https://github.com/OtnielToma/Joash)
 
-## Livrabilele Proiectului
+## Fisierele Proiectului
 
 Proiectul cuprinde următoarele fișiere și directoare principale:
 
